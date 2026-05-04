@@ -1,323 +1,176 @@
-/* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galerie Projets | SISR Portfolio</title>
+
+>
+//fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Styles spécifiques à la galerie */
+.galerie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: #0f172a;
-    color: #e2e8f0;
-    line-height: 1.6;
-    scroll-behavior: smooth;
+.galerie-item {
+    position: relative;
+    height: 400px;
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* LIGHT MODE */
-body.light {
-    background: #f8fafc;
+.galerie-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 20px 40px rgba(56, 189, 248, 0.3);
+}
+
+.galerie-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.galerie-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(15, 23, 42, 0.9));
+    color: white;
+    padding: 30px 20px 20px;
+}
+
+.galerie-titre {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.galerie-desc {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+body.light .galerie-overlay {
+    background: linear-gradient(transparent, rgba(248, 250, 252, 0.9));
     color: #0f172a;
 }
+</style>
+</head>
 
-/* HEADER */
-header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(15, 23, 42, 0.9);
-    backdrop-filter: blur(10px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    z-index: 1000;
+<body>
+
+<header>
+<h1 class="logo">SISR Portfolio Gabriel VAN ELST</h1>
+
+<nav>
+<a href="#home">Accueil</a>
+<a href="#galerie">Galerie</a>
+<a href="#about">Profil</a>
+<a href="#timeline">Parcours</a>
+<a href="#projects">Projets</a>
+<a href="#skills">Compétences</a>
+<a href="#network">Infrastructure</a>
+<a href="#synthese">Synthèse BTS</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<div class="controls">
+<button class="toggle" onclick="toggleTheme()">🌙</button>
+<button class="toggle" onclick="toggleLang()">FR / EN</button>
+</div>
+</header>
+
+<main>
+<section id="home" class="hero">
+<div class="hero-content" style="text-align: center;">
+<h2>Mes <span>Projets en Images</span></h2>
+<p class="fr">Découvrez visuellement mes réalisations en administration systèmes et réseaux.</p>
+<p class="en" style="display:none">Discover visually my achievements in systems and network administration.</p>
+</div>
+</section>
+
+<section id="galerie">
+<h2>Galerie de Projets</h2>
+
+<div class="galerie-grid">
+<div class="galerie-item">
+<img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/d13f04467208228083bb57568f0614a6cd75807b.jpg" alt="Installation Home Assistant sur Raspberry Pi">
+<div class="galerie-overlay">
+<h3 class="galerie-titre">Home Assistant</h3>
+<p class="galerie-desc">Installation sur Raspberry Pi pour supervision domotique.</p>
+</div>
+</div>
+
+<div class="galerie-item">
+<img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/2eecc49efb4b8de023683578cb7de65a0f5009fd.jpg" alt="Dépannage Active Directory">
+<div class="galerie-overlay">
+<h3 class="galerie-titre">Dépannage AD</h3>
+<p class="galerie-desc">Analyse logs et résolution problèmes authentification.</p>
+</div>
+</div>
+
+<div class="galerie-item">
+<img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/81a8b5f9938f617d39f160f431d61aa3148f24a3.jpg" alt="Administration Linux">
+<div class="galerie-overlay">
+<h3 class="galerie-titre">Serveur Linux</h3>
+<p class="galerie-desc">Gestion systèmes et commandes d'administration.</p>
+</div>
+</div>
+
+<div class="galerie-item">
+<img src="https://pplx-res.cloudinary.com/image/upload/pplx_search_images/a6e68d788f295093344d234d2373c3348f923732.jpg" alt="Schéma infrastructure réseau">
+<div class="galerie-overlay">
+<h3 class="galerie-titre">Infrastructure Réseau</h3>
+<p class="galerie-desc">Architecture avec firewall, AD et serveurs clients.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<p>© 2026 Portfolio BTS SIO SISR</p>
+</footer>
+
+<script>
+function toggleTheme(){
+ document.body.classList.toggle("light")
 }
 
-body.light header {
-    background: rgba(255,255,255,0.9);
+function toggleLang(){
+ const fr=document.querySelectorAll(".fr")
+ const en=document.querySelectorAll(".en")
+
+ fr.forEach(e=>{
+  e.style.display=e.style.display==="none"?"block":"none"
+ })
+
+ en.forEach(e=>{
+  e.style.display=e.style.display==="none"?"block":"none"
+ })
 }
 
-.logo {
-    font-weight: 700;
-    font-size: 1.5rem;
-}
+const links=document.querySelectorAll("nav a")
+links.forEach(link=>{
+ link.addEventListener("click",e=>{
+  e.preventDefault()
+  const target=document.querySelector(link.getAttribute("href"))
+  if(target) {
+    target.scrollIntoView({behavior:"smooth"})
+  } else {
+    window.location.href = link.getAttribute("href")
+  }
+ })
+})
+</script>
 
-/* NAV */
-nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: inherit;
-    font-weight: 500;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: #38bdf8;
-}
-
-/* BUTTONS */
-.controls {
-    display: flex;
-    gap: 10px;
-}
-
-.toggle {
-    background: #1e293b;
-    border: none;
-    padding: 8px 12px;
-    color: white;
-    cursor: pointer;
-    border-radius: 6px;
-}
-
-body.light .toggle {
-    background: #e2e8f0;
-    color: black;
-}
-
-/* HERO */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 120px 60px;
-    gap: 40px;
-}
-
-.hero-content {
-    max-width: 500px;
-}
-
-.hero h2 {
-    font-size: 2.5rem;
-}
-
-.hero span {
-    color: #38bdf8;
-}
-
-.hero-buttons {
-    margin-top: 20px;
-}
-
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #38bdf8;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    margin-right: 10px;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-}
-
-.btn.secondary {
-    background: transparent;
-    border: 1px solid #38bdf8;
-}
-
-/* IMAGE */
-.hero-image img {
-    width: 300px;
-    border-radius: 50%;
-    border: 3px solid #38bdf8;
-}
-
-/* SECTIONS */
-section {
-    padding: 80px 60px;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 2rem;
-}
-
-/* CARDS */
-.cards {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.card {
-    background: #1e293b;
-    padding: 20px;
-    border-radius: 12px;
-    width: 300px;
-    transition: 0.3s;
-}
-
-body.light .card {
-    background: #ffffff;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-/* TIMELINE */
-.timeline {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.timeline-item {
-    background: #1e293b;
-    padding: 20px;
-    border-left: 4px solid #38bdf8;
-}
-
-body.light .timeline-item {
-    background: #ffffff;
-}
-
-/* PROJECTS */
-.project img {
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-/* SKILLS */
-.skills {
-    max-width: 600px;
-    margin: auto;
-}
-
-.skill {
-    margin-bottom: 20px;
-}
-
-.progress {
-    background: #334155;
-    height: 10px;
-    border-radius: 10px;
-}
-
-.progress div {
-    height: 100%;
-    background: #38bdf8;
-    border-radius: 10px;
-}
-
-/* NETWORK */
-.network-diagram {
-    text-align: center;
-}
-
-.network-diagram img {
-    max-width: 100%;
-    border-radius: 10px;
-}
-
-/* TABLE */
-.table-container {
-    overflow-x: auto;
-}
-
-table { 
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 12px;
-    border: 1px solid #334155;
-}
-
-th {
-    background: #38bdf8;
-    color: white;
-}
-
-/* CONTACT */
-#contact .card {
-    text-align: center;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #020617;
-    margin-top: 40px;
-}
-
-body.light footer {
-    background: #e2e8f0;
-}
-
-/* RESPONSIVE */
-@media(max-width: 900px) {
-    .hero {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    nav {
-        display: none;
-    }
-}
-
-/* HERO BACKGROUND SLIDER */
-.hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    padding: 0 20px;
-}
-
-/* SLIDER */
-.hero-slider {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
-
-.slide {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-
-.slide.active {
-    opacity: 1;
-}
-
-/* OVERLAY sombre */
-.hero::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(15, 23, 42, 0.7);
-    top: 0;
-    left: 0;
-}
-
-/* TEXTE AU DESSUS */
-.hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: 700px;
-}
+</body>
+</html>
